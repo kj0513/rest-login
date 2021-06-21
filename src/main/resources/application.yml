@@ -11,9 +11,9 @@ spring:
   - local
          
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/test?characterEncoding=UTF-8&serverTimezone=UTC
-    username: root
-    password: 1234
+    url: jdbc:mysql://127.0.0.1:3306/hello?characterEncoding=UTF-8&serverTimezone=UTC
+    username: "root"
+    password: "1234"
     driver-class-name: com.mysql.cj.jdbc.Driver
  
   devtools:
@@ -31,8 +31,6 @@ spring:
       
 server:
  port: 9000
- tomcat:
-    file-encoding: UTF-8
     
  servlet:
     encoding:

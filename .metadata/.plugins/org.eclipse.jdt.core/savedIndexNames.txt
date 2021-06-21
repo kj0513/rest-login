@@ -1,0 +1,4 @@
+INDEX VERSION 1.131+C:\Users\l1-morning\Documents\workspace\rest-login\.metadata\.plugins\org.eclipse.jdt.core
+277555183.index
+2262086060.index
+666323558.index
