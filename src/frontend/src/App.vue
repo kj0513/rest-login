@@ -21,6 +21,17 @@
             <v-list-item-title>게시판</v-list-item-title>
           </v-list-item-content>
         </v-list-item> -->
+
+        <v-list-item router :to="{name:'BoardList'}">
+          <v-list-item-action>
+            <v-icon>mdi-card-text-outline</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>게시판</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
+        
          <v-list-item router :to="{name:'admin'}">
           <v-list-item-action>
             <v-icon>mdi-card-text-outline</v-icon>

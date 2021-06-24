@@ -63,6 +63,19 @@ public class TestController {
 		return ResponseEntity.ok(board);
 	}
 	
+	
+	
+	@GetMapping("/boardWrite")
+	@PreAuthorize("hasRole('USER')")
+	public ResponseEntity<?>  boardWrite(@RequestBody Board board) {
+		
+		boardService.writeBoard(board);
+		
+		return ResponseEntity.ok(board);
+	}
+	
+	
+	
 	@DeleteMapping("/boardDelete/{bId}")
 	@PreAuthorize("hasRole('USER')")
 	public ResponseEntity<?>  boardDelete(@PathVariable(value = "bId") int bId) {

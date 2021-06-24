@@ -22,9 +22,19 @@
 		FROM				boardlist
 		WHERE			b_id = #{bId}
 	</select>
-	<select id="insertBoard" resultType="Board" parameterType="int">
-		INSERT INTO			
-		FROM				boardlist
-		WHERE			b_id = #{bId}
-	</select>
+	
+	<insert id="writeBoard" parameterType="Board">
+		INSERT INTO boardlist (
+			b_id,
+			b_title,
+			b_content,
+			b_writer
+		) VALUES (
+			#{bID},
+			#{bTitle},
+			#{bContent},
+			#{bWriter}
+		)
+	</insert>
+	
 </mapper>

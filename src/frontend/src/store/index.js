@@ -59,6 +59,10 @@ export default new Vuex.Store({
      state.boardlist.splice(index, 1);
      Route.push("/boardlist")
    },
+   SET_BOARDWRITE(state,data) {
+    state.boardlist = data
+    Route.push("/boardlist")
+  },
    READ_USER_LIST(state,data) {
     state.UserList = data
    },

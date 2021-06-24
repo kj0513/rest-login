@@ -11,4 +11,6 @@ public interface BoardService {
 	public Board selectBoardDetail(int bId);
 	
 	public void deleteBoard(int bId);
+	
+	public void writeBoard(Board board);
 }
