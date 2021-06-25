@@ -14,8 +14,9 @@
             value="내용을 입력해주세요"
             ></v-textarea>
         </v-form>
-        <v-btn @click="boardWrite({userId: Userinfo.User_Id, bTitle: writer_title, bContent: writer_content})">등록</v-btn>
+        <v-btn @click="boardWrite({username: Userinfo.User_Id, bTitle: writer_title, bContent: writer_content})">등록</v-btn>
     </v-flex>
+    
 </template>
 <script>
 import { mapState,mapActions } from 'vuex'

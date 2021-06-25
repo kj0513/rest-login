@@ -5,14 +5,13 @@
 		SELECT			b_id as bId,
 						b_title as bTitle,
 						b_content as bContent,
-						b_writer as bWriter
 		FROM			boardlist
 	</select>
 	<select id="selectBoardDetail" resultType="Board" parameterType="int">
-		SELECT			b_id as bId,
+		SELECT					b_id as bId,
 								b_title as bTitle,
 								b_content as bContent,
-								b_writer as bWriter,
+								u_id as username,
 								b_datetime as bDateTime 
 		FROM				boardlist
 		WHERE			b_id = #{bId}
@@ -25,15 +24,13 @@
 	
 	<insert id="writeBoard" parameterType="Board">
 		INSERT INTO boardlist (
-			b_id,
 			b_title,
 			b_content,
-			b_writer
+			u_id
 		) VALUES (
-			#{bID},
 			#{bTitle},
 			#{bContent},
-			#{bWriter}
+			#{username}
 		)
 	</insert>
 	

@@ -59,10 +59,6 @@ export default new Vuex.Store({
      state.boardlist.splice(index, 1);
      Route.push("/boardlist")
    },
-   SET_BOARDWRITE(state,data) {
-    state.boardlist = data
-    Route.push("/boardlist")
-  },
    READ_USER_LIST(state,data) {
     state.UserList = data
    },
@@ -179,9 +175,7 @@ export default new Vuex.Store({
       axios.post('http://localhost:9000/api/test/boardWrite', payload)
           .then(Response => {
               console.log(Response.data)
-              if(Response.data === "success") {
-                commit('SET_BOARDWRITE', Response.data)
-              }
+              Route.push("/boardlist")
           })
           .catch(Error => {
               console.log('error')

@@ -4,8 +4,10 @@ public class Board {
 	private int bId;
 	private String bTitle;
 	private String bContent;
-	private String bWriter;
 	private String bDateTime;
+	private String username;
+	
+	private User user;
 	
 	public int getbId() {
 		return bId;
@@ -25,12 +27,6 @@ public class Board {
 	public void setbContent(String bContent) {
 		this.bContent = bContent;
 	}
-	public String getbWriter() {
-		return bWriter;
-	}
-	public void setbWriter(String bWriter) {
-		this.bWriter = bWriter;
-	}
 	public String getbDateTime() {
 		return bDateTime;
 	}
@@ -38,9 +34,25 @@ public class Board {
 		this.bDateTime = bDateTime;
 	}
 	
+	
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	public String getUsername() {
+		return username;
+	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+	
+	
+	
 	@Override
 	public String toString() {
-		return "Board [bId=" + bId + ", bTitle=" + bTitle + ", bContent=" + bContent + ", bWriter=" + bWriter
+		return "Board [bId=" + bId + ", bTitle=" + bTitle + ", bContent=" + bContent 
 				+ ", bDateTime=" + bDateTime + "]";
 	}
 	

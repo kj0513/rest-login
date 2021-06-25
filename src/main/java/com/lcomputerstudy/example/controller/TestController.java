@@ -41,7 +41,7 @@ public class TestController {
 	}
 	
 	@GetMapping("/user")
-	@PreAuthorize("hasRole('USER')")
+	@PreAuthorize("hasRole('ROLE_USER')")
 	public ResponseEntity<?>  userAccess() {
 		List<Board> boardList = boardService.selectBoardList();
 		return ResponseEntity.ok(boardList);
@@ -54,7 +54,7 @@ public class TestController {
 	}
 	
 	@GetMapping("/boardDetail")
-	@PreAuthorize("hasRole('USER')")
+	@PreAuthorize("hasRole('ROLE_USER')")
 	public ResponseEntity<?>  boardDetail(@RequestParam int bId) {
 		
 		logger.info("///"+bId);
@@ -65,8 +65,8 @@ public class TestController {
 	
 	
 	
-	@GetMapping("/boardWrite")
-	@PreAuthorize("hasRole('USER')")
+	@PostMapping("/boardWrite")
+	@PreAuthorize("hasRole('ROLE_USER')")
 	public ResponseEntity<?>  boardWrite(@RequestBody Board board) {
 		
 		boardService.writeBoard(board);
@@ -77,7 +77,7 @@ public class TestController {
 	
 	
 	@DeleteMapping("/boardDelete/{bId}")
-	@PreAuthorize("hasRole('USER')")
+	@PreAuthorize("hasRole('ROLE_USER')")
 	public ResponseEntity<?>  boardDelete(@PathVariable(value = "bId") int bId) {
 		
 		logger.info("delete"+bId);
