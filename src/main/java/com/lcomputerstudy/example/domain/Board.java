@@ -52,7 +52,7 @@ public class Board {
 	
 	@Override
 	public String toString() {
-		return "Board [bId=" + bId + ", bTitle=" + bTitle + ", bContent=" + bContent 
+		return "Board [bId=" + bId + ", bTitle=" + bTitle + ", bContent=" + bContent + ", usernamer=" + username
 				+ ", bDateTime=" + bDateTime + "]";
 	}
 	

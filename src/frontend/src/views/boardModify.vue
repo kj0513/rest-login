@@ -11,12 +11,6 @@
         <tr>
           <td colspan="2" style="border:none;">{{board_detail.bContent}}</td>
         </tr>
-        <tr>
-          <td colspan="2" style="border:none;text-align:right;border-top:3px double #ededed">
-            <v-btn @click="BoardModify({bId:bId})">수정</v-btn>
-            <v-btn @click="BoardDelete({bId:bId})">삭제</v-btn>
-          </td>
-        </tr>
       </table>
   </v-flex>
 </template>
@@ -32,7 +26,7 @@ export default {
        ...mapState(["board_detail"])
     },
     methods: {
-      ...mapActions(["BoardDelete","BoardModify"])
+      
     }
 }
 </script>

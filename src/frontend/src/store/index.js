@@ -59,6 +59,10 @@ export default new Vuex.Store({
      state.boardlist.splice(index, 1);
      Route.push("/boardlist")
    },
+   SET_BOARDMODIFY(state,data) {
+    state.board_detail=data
+    Route.push("/boardModify/"+data.bId)
+  },
    READ_USER_LIST(state,data) {
     state.UserList = data
    },
@@ -170,6 +174,20 @@ export default new Vuex.Store({
           })
    })
   },
+
+  BoardModify({commit},payload) {
+    return new Promise((resolve, reject) => {
+      axios.get('http://localhost:9000/api/test/boardModify/'+payload.bId)
+          .then(Response => {
+              console.log(Response.data)
+              commit('SET_BOARDMODIFY', Response.data)
+          })
+          .catch(Error => {
+              console.log('error')
+              reject(Error)
+          })
+    })
+   },
   boardWrite({commit},payload) {
     return new Promise((resolve, reject) => {
       axios.post('http://localhost:9000/api/test/boardWrite', payload)
