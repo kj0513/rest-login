@@ -48,10 +48,10 @@
 			u_password,
 			u_name,
 			u_phone,
-			u_isAccountNonExpired,
-			u_isAccountNonLocked,
-			u_isCredentialNonExpired,
-			u_isEnabled
+			U_ISACCOUNTNONEXPIRED,
+			U_ISACCOUNTNONLOCKED,
+			U_ISCREDENTIALNONEXPIRED,
+			U_ISENABLED
 		) VALUES (
 			#{username},
 			#{password},

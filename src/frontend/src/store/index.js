@@ -11,6 +11,11 @@ export default new Vuex.Store({
     board_detail:[],
     UserList:[]
   },
+  getters: {
+    board_detail: state => {
+      return state.board_detail
+    },
+  },
   mutations: {
     NewUsers: (state,payload) => {
       state.UserList.push(payload)
