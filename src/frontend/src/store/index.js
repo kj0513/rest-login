@@ -193,6 +193,19 @@ export default new Vuex.Store({
           })
     })
    },
+   BoardModifyProcess({commit},payload) {
+    return new Promise((resolve, reject) => {
+      axios.post('http://localhost:9000/api/test/boardModifyProcess/',payload)
+          .then(Response => {
+              console.log(Response.data)
+              commit('SET_BOARDMODIFY', Response.data)
+          })
+          .catch(Error => {
+              console.log('error')
+              reject(Error)
+          })
+    })
+   },
   boardWrite({commit},payload) {
     return new Promise((resolve, reject) => {
       axios.post('http://localhost:9000/api/test/boardWrite', payload)

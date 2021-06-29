@@ -35,6 +35,13 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void writeBoard(Board board) {
 		boardMapper.writeBoard(board);
+	}
+
+
+	@Override
+	public void modifyBoard(Board board) {
+		boardMapper.modifyBoard(board);
+		
 	};
 
 }

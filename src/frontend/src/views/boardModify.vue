@@ -16,18 +16,8 @@
         </v-form>
         <table>
         <tr>
-          <td colspan="2" style="font-weight:700;"> {{board_detail.bTitle}}</td>
-        </tr>
-        <tr style="font-size:0.9rem;">
-          <td> 작성자 :  {{board_detail.username}} </td>
-          <td style="text-align:right">{{board_detail.bDateTime}}</td>
-        </tr>
-        <tr>
-          <td colspan="2" style="border:none;">{{board_detail.bContent}}</td>
-        </tr>
-        <tr>
          <td colspan="2" style="border:none;text-align:right;border-top:3px double #ededed">
-            <v-btn @click="BoardModify(board)">수정완료</v-btn>
+            <v-btn @click="BoardModifyProcess(board)">수정완료</v-btn>
           </td>
         </tr>
       </table>
@@ -42,15 +32,16 @@ export default {
     data() {
       return {
         bId : this.$route.params.bId,
-        writer_title:null,
-        writer_content:null,
+        // writer_title:null,
+        // writer_content:null,
         board: null,
       }
     },
-    computed: {
-       ...mapState(["board_detail"])
-    },
+    // computed: {
+    //    ...mapState(["board_detail"])
+    // },
     methods: {
+      ...mapActions(["BoardModifyProcess"])
     }
 }
 </script>

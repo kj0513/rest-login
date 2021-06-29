@@ -15,4 +15,6 @@ public interface BoardMapper {
 	public void deleteBoard(int bId);
 	
 	public void writeBoard(Board board);
+	
+	public void modifyBoard(Board board);
 }

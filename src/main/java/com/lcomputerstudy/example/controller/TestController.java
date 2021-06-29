@@ -95,5 +95,14 @@ public class TestController {
 		return ResponseEntity.ok(board);
 	}
 	
+	@PostMapping("/boardModifyProcess")
+	@PreAuthorize("permitAll")
+	public ResponseEntity<?>  boardModifyProcess(@RequestBody Board board) {
+		
+		boardService.modifyBoard(board);
+		
+		return ResponseEntity.ok(board);
+	}
+	
 
 }

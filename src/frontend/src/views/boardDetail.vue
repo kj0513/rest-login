@@ -23,10 +23,6 @@
 <script>
 import { mapActions, mapState } from "vuex"
 export default {
-    created() {
-      console.log('boardDetail2')
-      console.log(this.$store.state.board_detail)
-    },
     data() {
       return {
         bId : this.$route.params.bId,

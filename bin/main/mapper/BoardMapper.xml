@@ -35,4 +35,11 @@
 		)
 	</insert>
 	
+	 <update id="modifyBoard" parameterType="Board">
+        update boardlist 
+        set  b_title = #{bTitle},
+            b_content = #{bContent}
+       where b_id = #{bId}
+    </update>
+	
 </mapper>
