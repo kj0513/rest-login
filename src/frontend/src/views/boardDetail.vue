@@ -15,9 +15,15 @@
           <td colspan="2" style="border:none;text-align:right;border-top:3px double #ededed">
             <v-btn @click="BoardModify({bId:bId})">수정</v-btn>
             <v-btn @click="BoardDelete({bId:bId})">삭제</v-btn>
+            <v-btn  router :to="{name:'boardwrite'}">답글쓰기</v-btn>
           </td>
         </tr>
       </table>
+        <v-form style="width:500px;margin:0 auto;">
+          <v-text-field
+          ></v-text-field>
+          <v-btn @click="CommentWrite({bId:bId})">댓글등록</v-btn>
+        </v-form>
   </v-flex>
 </template>
 <script>
@@ -32,7 +38,7 @@ export default {
        ...mapState(["board_detail"])
     },
     methods: {
-      ...mapActions(["BoardDelete","BoardModify"])
+      ...mapActions(["BoardDelete","BoardModify","boardWrite","CommentWrite"])
     }
 }
 </script>

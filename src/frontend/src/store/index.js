@@ -9,7 +9,12 @@ export default new Vuex.Store({
     Userinfo:{User_Id:null,User_Name:null,User_auth:[],User_token:null},
     boardlist:[],
     board_detail:[],
-    UserList:[]
+    UserList:[],
+    board_headers: [
+      {
+
+      }
+    ]
   },
   getters: {
     board_detail: state => {
@@ -198,7 +203,7 @@ export default new Vuex.Store({
       axios.post('http://localhost:9000/api/test/boardModifyProcess/',payload)
           .then(Response => {
               console.log(Response.data)
-              commit('SET_BOARDMODIFY', Response.data)
+              commit('SET_BOARDDETAIL', Response.data)
           })
           .catch(Error => {
               console.log('error')

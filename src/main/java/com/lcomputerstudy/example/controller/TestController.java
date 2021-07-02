@@ -68,7 +68,13 @@ public class TestController {
 	@PostMapping("/boardWrite")
 	@PreAuthorize("permitAll")
 	public ResponseEntity<?>  boardWrite(@RequestBody Board board) {
-		
+		 if (board.getbId() != 0) {
+//			  board = new Board();	
+//			  board.setB_group(b_group);
+			  	
+				board.setbOrder(board.getbOrder()+1);
+				board.setbDepth(board.getbDepth()+1);
+			}
 		boardService.writeBoard(board);
 		
 		return ResponseEntity.ok(board);

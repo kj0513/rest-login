@@ -5,8 +5,10 @@
 	<select id="selectBoardList" resultType="Board">
 		SELECT			b_id as bId,
 						b_title as bTitle,
-						b_content as bContent
-		FROM				boardlist
+						b_content as bContent,
+						u_id as username,
+						b_datetime as bDateTime
+		FROM			boardlist
 	</select>
 	<select id="selectBoardDetail" resultType="Board" parameterType="int">
 		SELECT					b_id as bId,
@@ -27,11 +29,17 @@
 		INSERT INTO boardlist (
 			b_title,
 			b_content,
-			u_id
+			u_id,
+			b_group,
+     		b_order,
+     		b_depth
 		) VALUES (
 			#{bTitle},
 			#{bContent},
-			#{username}
+			#{username},
+			#{bGroup},
+			#{bOrder},
+			#{bDepth}
 		)
 	</insert>
 	

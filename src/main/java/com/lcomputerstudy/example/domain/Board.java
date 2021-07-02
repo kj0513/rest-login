@@ -6,6 +6,12 @@ public class Board {
 	private String bContent;
 	private String bDateTime;
 	private String username;
+	private int bCount;
+	
+	private int bGroup;
+	private int bOrder;
+	private int bDepth;
+	
 	
 	private User user;
 	
@@ -48,6 +54,30 @@ public class Board {
 		this.user = user;
 	}
 	
+	public int getbCount() {
+		return bCount;
+	}
+	public void setbCount(int bCount) {
+		this.bCount = bCount;
+	}
+	public int getbGroup() {
+		return bGroup;
+	}
+	public void setbGroup(int bGroup) {
+		this.bGroup = bGroup;
+	}
+	public int getbOrder() {
+		return bOrder;
+	}
+	public void setbOrder(int bOrder) {
+		this.bOrder = bOrder;
+	}
+	public int getbDepth() {
+		return bDepth;
+	}
+	public void setbDepth(int bDepth) {
+		this.bDepth = bDepth;
+	}
 	
 	
 	@Override
@@ -55,5 +85,6 @@ public class Board {
 		return "Board [bId=" + bId + ", bTitle=" + bTitle + ", bContent=" + bContent + ", usernamer=" + username
 				+ ", bDateTime=" + bDateTime + "]";
 	}
+	
 	
 }
