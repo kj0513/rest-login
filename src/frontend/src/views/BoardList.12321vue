@@ -1,0 +1,64 @@
+<template>
+  <v-container>
+    <v-data-table style="width: 200%"
+    :headers="headers"
+    :items="$store.state.boardlist"
+    :items-per-page="5"
+    class="elevation-1"
+    >
+     <template slot="items" slot-scope="props">
+       <!-- <v-toolbar
+        flat
+      >
+        <v-toolbar-title>게시판</v-toolbar-title>
+        <v-divider
+          class="mx-4"
+          inset
+          vertical
+        ></v-divider>
+        <v-spacer></v-spacer>
+       </v-toolbar> -->
+       <tr @click="boardDetail(item.bId)">
+          <td>{{ props.item.bId }}</td>
+          <td class="text-xs-right">{{ props.item.bTitle }}</td>
+          <td class="text-xs-right">{{ props.item.username }}</td>
+          <td class="text-xs-right">{{ props.item.bDateTime }}</td>
+        </tr>
+     </template>
+    </v-data-table>
+    <div class="text-right pt-3">
+      <v-btn
+        color="primary"
+        router :to="{name:'boardwrite'}"
+      >글쓰기
+      </v-btn>
+    </div>
+  </v-container>
+</template>
+
+
+
+<script>
+import { mapState, mapActions } from "vuex"
+export default {
+  data(){
+    return{
+      headers: [
+        { text: 'No', align: 'center', sortable: false, value: 'bId' },
+        { text: '제목', align: 'center', sortable: false, value: 'bTitle' },
+        { text: '작성자', align: 'center', sortable: false, value: 'username' },
+        { text: '날짜', align: 'center', sortable: false, value: 'bDateTime' },
+      ],
+    }
+  },
+  created() {
+    this.$store.dispatch('boardList')
+  },
+  computed: {
+    ...mapState(["boardlist"])
+  },
+  methods: {
+    ...mapActions(['boardDetail','boardWrite'])
+  } 
+}
+</script>

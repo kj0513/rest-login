@@ -1,58 +1,60 @@
 <template>
-  <v-container>
-    <v-data-table style="width: 200%"
-    :headers="headers"
-    :items="$store.state.boardlist"
-    :items-per-page="5"
-    @click:row="boardDetail"
-    class="elevation-1"
-    >
-     <template v-slot:top>
-       <v-toolbar
-        flat
-      >
-        <v-toolbar-title>게시판</v-toolbar-title>
-        <v-divider
-          class="mx-4"
-          inset
-          vertical
-        ></v-divider>
-        <v-spacer></v-spacer>
-       </v-toolbar>
-       <!-- <v-list-item
-        :key="item.bId"
-         @click="boardDetail(item.bId)"
-        >
-         <v-list-item-content >
-         <v-list-item-subtitle v-html="item.bTitle"></v-list-item-subtitle>
-         <v-list-item-subtitle v-html="item.bContent"></v-list-item-subtitle>
-        </v-list-item-content>
-        </v-list-item> -->
-     </template>
-    </v-data-table>
-    <div class="text-right pt-3">
-      <v-btn
-        color="primary"
-        router :to="{name:'boardwrite'}"
-      >글쓰기
-      </v-btn>
-    </div>
-  </v-container>
+  <v-card style ="width:1100px; height:600px; padding-left:40px; padding-top:40px">
+    <v-simple-table style="width: 200%">
+      <template v-slot:default>
+        <thead>
+          <tr>
+            <th class="text-left">
+              No
+            </th>
+            <th class="text-left">
+              제목
+            </th>
+            <th class="text-left">
+              작성자
+            </th>
+            <th class="text-left">
+              날짜
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            v-for="item in boardlist"
+            :key="item.name"
+            @click="boardDetail(item.bId)"
+          >
+            <td>{{ item.bId }}</td>
+            <td>{{ item.bTitle }}</td>
+            <td>{{ item.username }}</td>
+            <td>{{ item.bDateTime }}</td>
+          </tr>
+        </tbody>
+      </template>
+    </v-simple-table>
+    <v-row>
+    <div class="text-left pt-3">
+        <v-btn
+          color="primary"
+          router :to="{name:'boardwrite'}"
+        >글쓰기
+        </v-btn>
+      </div>
+      <div class="text-cetner">
+       <v-pagination
+        v-model="page"
+        :length="4"
+        prev-icon="mdi-menu-left"
+        next-icon="mdi-menu-right"
+        ></v-pagination>
+      </div>
+    </v-row>
+  </v-card>
 </template>
 
 <script>
 import { mapState, mapActions } from "vuex"
 export default {
-  data(){
-    return{
-      headers: [
-        { text: 'No', align: 'center', sortable: false, value: 'bId' },
-        { text: '제목', align: 'center', sortable: false, value: 'bTitle' },
-        { text: '작성자', align: 'center', sortable: false, value: 'username' },
-        { text: '날짜', align: 'center', sortable: false, value: 'bDateTime' },
-      ],
-    }
-  },
   created() {
     this.$store.dispatch('boardList')
   },
@@ -60,7 +62,10 @@ export default {
     ...mapState(["boardlist"])
   },
   methods: {
-    ...mapActions(['boardDetail','boardWrite'])
+    ...mapActions(['boardDetail','boardWrite']),
+    test (bId) {
+      alert(bId);
+    }
   } 
 }
 </script>
