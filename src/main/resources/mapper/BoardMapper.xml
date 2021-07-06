@@ -49,5 +49,11 @@
             b_content = #{bContent}
        where b_id = #{bId}
     </update>
+    
+    
+    <select id="getBoards" resultType="int">
+	 	Select 	COUNT(*) count 
+	 	FROM boardlist
+    </select>
 	
 </mapper>

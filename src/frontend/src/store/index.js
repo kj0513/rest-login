@@ -152,6 +152,19 @@ export default new Vuex.Store({
             })
     })
    },
+   boardgetList({commit,payload}) {
+    return new Promise((resolve, reject) => {
+        axios.get('http://localhost:9000/api/test/BoardgetList/'+payload)
+            .then(Response => {
+                console.log(Response.data)
+                commit('SET_BOARDLIST', Response.data)
+            })
+            .catch(Error => {
+                console.log('error')
+                reject(Error)
+            })
+    })
+   },
    boardDetail({commit},payload) {
     return new Promise((resolve, reject) => {
       axios.get('http://localhost:9000/api/test/boardDetail', {

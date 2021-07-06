@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lcomputerstudy.example.domain.Board;
+import com.lcomputerstudy.example.domain.Pagination;
 import com.lcomputerstudy.example.domain.User;
 import com.lcomputerstudy.example.request.JoinRequest;
 import com.lcomputerstudy.example.service.BoardService;
@@ -43,7 +44,18 @@ public class TestController {
 	@GetMapping("/user")
 	@PreAuthorize("permitAll")
 	public ResponseEntity<?>  userAccess() {
+		
 		List<Board> boardList = boardService.selectBoardList();
+		return ResponseEntity.ok(boardList);
+	}
+	@GetMapping({"/BoardList"})
+	@PreAuthorize("permitAll")
+	public ResponseEntity<?>  BoardgetList(@RequestParam int page) {
+		
+		int boardcount = boardService.getBoards();
+//		Pagination pagination = new Pagination(page, boardcount,search);
+		List<Board> boardList = boardService.selectBoardList();
+//		logger.info("boardcount"+boardcount);
 		return ResponseEntity.ok(boardList);
 	}
 	

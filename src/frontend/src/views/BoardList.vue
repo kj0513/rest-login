@@ -1,5 +1,5 @@
 <template>
-  <v-card style ="width:1100px; height:600px; padding-left:40px; padding-top:40px">
+  <v-container>
     <v-simple-table style="width: 200%">
       <template v-slot:default>
         <thead>
@@ -20,7 +20,7 @@
         </thead>
         <tbody>
           <tr
-            v-for="item in boardlist"
+            v-for="item in list"
             :key="item.name"
             @click="boardDetail(item.bId)"
           >
@@ -33,38 +33,50 @@
       </template>
     </v-simple-table>
     <v-row>
-    <div class="text-left pt-3">
-        <v-btn
-          color="primary"
-          router :to="{name:'boardwrite'}"
-        >글쓰기
-        </v-btn>
+      <div class="text-right pt-3">
+          <v-btn
+            color="primary"
+            router :to="{name:'boardwrite'}"
+          >글쓰기
+          </v-btn>
       </div>
-      <div class="text-cetner">
+    </v-row>
+    <v-row>
+      <div class="overflow-auto pt-4">
        <v-pagination
         v-model="page"
         :length="4"
         prev-icon="mdi-menu-left"
         next-icon="mdi-menu-right"
+        @input="boardgetList(page)"
         ></v-pagination>
       </div>
     </v-row>
-  </v-card>
+  </v-container>
 </template>
 
 <script>
 import { mapState, mapActions } from "vuex"
 export default {
+  data () {
+      return {
+        page: 1,
+        list: this.$store.state.boardlist,
+        pagination:{
+          page:1
+        }
+      }
+    },
   created() {
     this.$store.dispatch('boardList')
   },
   computed: {
-    ...mapState(["boardlist"])
+
   },
   methods: {
-    ...mapActions(['boardDetail','boardWrite']),
-    test (bId) {
-      alert(bId);
+    ...mapActions(['boardDetail','boardWrite','boardgetList']),
+    test (page) {
+      alert(page);
     }
   } 
 }

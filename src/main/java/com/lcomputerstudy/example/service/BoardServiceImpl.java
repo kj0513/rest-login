@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.lcomputerstudy.example.domain.Board;
+import com.lcomputerstudy.example.domain.Search;
 import com.lcomputerstudy.example.mapper.BoardMapper;
 
 
@@ -43,5 +44,10 @@ public class BoardServiceImpl implements BoardService {
 		boardMapper.modifyBoard(board);
 		
 	};
+	
+	public int getBoards() {
+		return boardMapper.getBoards();
+	};
+
 
 }
