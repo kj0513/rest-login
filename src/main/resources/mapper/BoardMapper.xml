@@ -3,13 +3,27 @@
 <mapper namespace="com.lcomputerstudy.example.mapper.BoardMapper">
 
 	<select id="selectBoardList" resultType="Board">
+		SELECT 		@ROWNUM := @ROWNUM - 1 AS ROWNUM, 
+					ta.*,
+					tc.u_id,
+				    tc.u_name
+		FROM 		boardlist ta
+		LEFT join 	userlist tc 
+		ON 			ta.u_id = tc.u_id,
+					(SELECT @ROWNUM := (SELECT	COUNT(*)-#{pageNum}+1 FROM boardlist ta)) tb
+<!-- 		ORDER BY 	b_group desc, b_order asc -->
+		LIMIT		#{pageNum}, 5
+   </select>
+   
+<!-- 	<select id="selectBoardList" resultType="Board">
 		SELECT			b_id as bId,
 						b_title as bTitle,
 						b_content as bContent,
 						u_id as username,
 						b_datetime as bDateTime
 		FROM			boardlist
-	</select>
+	</select> -->
+	
 	<select id="selectBoardDetail" resultType="Board" parameterType="int">
 		SELECT					b_id as bId,
 								b_title as bTitle,

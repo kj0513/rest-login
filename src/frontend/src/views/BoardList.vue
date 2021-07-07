@@ -48,7 +48,7 @@
         :length="4"
         prev-icon="mdi-menu-left"
         next-icon="mdi-menu-right"
-        @input="boardgetList(page)"
+        @input="boardList(page)"
         ></v-pagination>
       </div>
     </v-row>
@@ -61,20 +61,25 @@ export default {
   data () {
       return {
         page: 1,
-        list: this.$store.state.boardlist,
-        pagination:{
-          page:1
-        }
+        list: this.$store.state.boardlist
       }
     },
   created() {
     this.$store.dispatch('boardList')
   },
   computed: {
+    // pageCount() {
+    //     let listLeng = this.listArray.length,
+    //       listSize = this.pageSize,
+    //       page = Math.floor(listLeng / listSize);
+    //   if (listLeng % listSize > 0) page += 1;
+      
+    //   return page;
+    // }
 
   },
   methods: {
-    ...mapActions(['boardDetail','boardWrite','boardgetList']),
+    ...mapActions(['boardDetail','boardWrite','boardList']),
     test (page) {
       alert(page);
     }

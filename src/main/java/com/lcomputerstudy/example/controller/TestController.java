@@ -1,5 +1,6 @@
 package com.lcomputerstudy.example.controller;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -25,6 +26,7 @@ import com.lcomputerstudy.example.domain.Board;
 import com.lcomputerstudy.example.domain.Pagination;
 import com.lcomputerstudy.example.domain.User;
 import com.lcomputerstudy.example.request.JoinRequest;
+import com.lcomputerstudy.example.response.ListResponse;
 import com.lcomputerstudy.example.service.BoardService;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -43,21 +45,53 @@ public class TestController {
 	
 	@GetMapping("/user")
 	@PreAuthorize("permitAll")
-	public ResponseEntity<?>  userAccess() {
+	public ResponseEntity<?>  userAccess(@RequestParam("page") int page) {
 		
-		List<Board> boardList = boardService.selectBoardList();
-		return ResponseEntity.ok(boardList);
-	}
-	@GetMapping({"/BoardList"})
-	@PreAuthorize("permitAll")
-	public ResponseEntity<?>  BoardgetList(@RequestParam int page) {
+		logger.debug("page: " + page);
 		
 		int boardcount = boardService.getBoards();
-//		Pagination pagination = new Pagination(page, boardcount,search);
-		List<Board> boardList = boardService.selectBoardList();
-//		logger.info("boardcount"+boardcount);
-		return ResponseEntity.ok(boardList);
+		
+		Pagination pagination = new Pagination(page,boardcount);
+		List<Board> boardList = boardService.selectBoardList(pagination);
+//		logger.debug("listboard:" + );
+		
+		ListResponse<Board> listRes = new ListResponse<>();	
+		listRes.setList(boardList);
+		listRes.setPagination(pagination);
+		return ResponseEntity.ok(listRes);
+		
+//		return ResponseEntity.ok(boardList);
 	}
+			
+	
+//	@GetMapping("/user")
+//	@PreAuthorize("permitAll")
+//	public ResponseEntity<?>  user(@RequestParam int page) {
+//		
+//		int boardcount = boardService.getBoards();
+//		
+//		Pagination pagination = new Pagination(page,boardcount);
+//		List<Board> boardList = boardService.selectBoardList();
+//		
+//		ListResponse<Board> listRes = new ListResponse<>();	
+//		listRes.setList(boardList);
+//		listRes.setPagination(pagination);
+//		
+//		return ResponseEntity.ok(listRes);
+//	}
+	
+	
+	
+//	@GetMapping({"/BoardList"})
+//	@PreAuthorize("permitAll")
+//	public ResponseEntity<?>  BoardgetList(@RequestParam int page) {
+//		
+//		int boardcount = boardService.getBoards();
+////		Pagination pagination = new Pagination(page, boardcount,search);
+//		List<Board> boardList = boardService.selectBoardList();
+////		logger.info("boardcount"+boardcount);
+//		return ResponseEntity.ok(boardList);
+//	}
 	
 	@GetMapping("/admin")
 	@PreAuthorize("hasRole('ROLE_ADMIN')")

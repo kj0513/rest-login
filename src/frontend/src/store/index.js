@@ -139,9 +139,14 @@ export default new Vuex.Store({
             })
     })
    },
-   boardList({commit}) {
+   boardList({commit},payload) {
+     console.log(payload)
     return new Promise((resolve, reject) => {
-        axios.get('http://localhost:9000/api/test/user')
+        axios.get('http://localhost:9000/api/test/user', {
+          params: {
+            page: payload
+          }
+        })
             .then(Response => {
                 console.log(Response.data)
                 commit('SET_BOARDLIST', Response.data)
@@ -152,19 +157,19 @@ export default new Vuex.Store({
             })
     })
    },
-   boardgetList({commit,payload}) {
-    return new Promise((resolve, reject) => {
-        axios.get('http://localhost:9000/api/test/BoardgetList/'+payload)
-            .then(Response => {
-                console.log(Response.data)
-                commit('SET_BOARDLIST', Response.data)
-            })
-            .catch(Error => {
-                console.log('error')
-                reject(Error)
-            })
-    })
-   },
+  //  boardgetList({commit,payload}) {
+  //   return new Promise((resolve, reject) => {
+  //       axios.get('http://localhost:9000/api/test/BoardgetList/'+payload)
+  //           .then(Response => {
+  //               console.log(Response.data)
+  //               commit('SET_BOARDLIST', Response.data)
+  //           })
+  //           .catch(Error => {
+  //               console.log('error')
+  //               reject(Error)
+  //           })
+  //   })
+  //  },
    boardDetail({commit},payload) {
     return new Promise((resolve, reject) => {
       axios.get('http://localhost:9000/api/test/boardDetail', {
