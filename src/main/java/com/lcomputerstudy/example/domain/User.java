@@ -15,10 +15,10 @@ public class User implements UserDetails{
 	private String phone;
 	private String uDateTime;
 	private Collection<? extends GrantedAuthority> authorities;
-	private Boolean isAccountNonExpired;
-	private Boolean isAccountNonLocked;
-	private Boolean isCredentialsNonExpired;
-	private Boolean isEnabled;
+	private boolean isAccountNonExpired;
+	private boolean isAccountNonLocked;
+	private boolean isCredentialsNonExpired;
+	private boolean isEnabled;
 	
 	
 	

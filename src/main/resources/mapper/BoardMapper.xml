@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lcomputerstudy.example.mapper.BoardMapper">
 
-	<select id="selectBoardList" resultType="Board">
+	<select id="selectBoardList" resultMap="BoardMap">
 		SELECT 		@ROWNUM := @ROWNUM - 1 AS ROWNUM, 
 					ta.*,
 					tc.u_id,
@@ -14,6 +14,25 @@
 <!-- 		ORDER BY 	b_group desc, b_order asc -->
 		LIMIT		#{pageNum}, 5
    </select>
+   
+      <resultMap type="User" id="UserMap">
+   		<result column = "u_id" property="username"/>
+   		<result column = "u_name" property="name"/>
+   	  </resultMap>
+   	  
+      <resultMap type="Board" id="BoardMap">
+   		<result column = "b_id" property="bId"/>
+   		<result column = "b_title" property="bTitle"/>
+   		<result column = "b_content" property="bContent"/>
+   		<result column = "b_datetime" property="bDateTime"/>
+   		<result column = "b_group" property="bGroup"/>
+<!--    		<result column = "b_count" property="b_count"/> -->
+   		<result column = "b_order" property="bOrder"/>
+   		<result column = "b_depth" property="bDepth"/>
+   		<result column = "u_id" property="username"/>
+   		<association property="user" resultMap="UserMap"/>
+   	  </resultMap> 
+   
    
 <!-- 	<select id="selectBoardList" resultType="Board">
 		SELECT			b_id as bId,
