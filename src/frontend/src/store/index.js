@@ -143,12 +143,7 @@ export default new Vuex.Store({
      console.log(payload)
     return new Promise((resolve, reject) => {
         axios.get('http://localhost:9000/api/test/user', {
-          params: {
-            page:payload
-            // page: payload.page,
-            // type: payload.type,
-            // keyword: payload.keyword
-          }
+          params: payload
         })
             .then(Response => {
                 console.log(Response.data)

@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.lcomputerstudy.example.domain.Board;
 import com.lcomputerstudy.example.domain.Pagination;
+import com.lcomputerstudy.example.domain.Search;
 import com.lcomputerstudy.example.domain.User;
 import com.lcomputerstudy.example.request.JoinRequest;
 import com.lcomputerstudy.example.response.ListResponse;
@@ -45,13 +46,13 @@ public class TestController {
 	
 	@GetMapping("/user")
 	@PreAuthorize("permitAll")
-	public ResponseEntity<?>  userAccess(@RequestParam("page") int page) {
+	public ResponseEntity<?>  userAccess(@RequestParam("page") int page, Search search) {
 		
 		logger.debug("page: " + page);
 		
-		int boardcount = boardService.getBoards();
+		int boardcount = boardService.getBoards(search);
 		
-		Pagination pagination = new Pagination(page,boardcount);
+		Pagination pagination = new Pagination(page,boardcount,search);
 		List<Board> boardList = boardService.selectBoardList(pagination);
 //		logger.debug("listboard:" + );
 		
@@ -63,6 +64,25 @@ public class TestController {
 //		return ResponseEntity.ok(boardList);
 	}
 			
+//	@GetMapping("/user")
+//	@PreAuthorize("permitAll")
+//	public ResponseEntity<?>  userAccess(@RequestParam("page") int page) {
+//		
+//		logger.debug("page: " + page);
+//		
+//		int boardcount = boardService.getBoards();
+//		
+//		Pagination pagination = new Pagination(page,boardcount);
+//		List<Board> boardList = boardService.selectBoardList(pagination);
+////		logger.debug("listboard:" + );
+//		
+//		ListResponse<Board> listRes = new ListResponse<>();	
+//		listRes.setList(boardList);
+//		listRes.setPagination(pagination);
+//		return ResponseEntity.ok(listRes);
+//		
+////		return ResponseEntity.ok(boardList);
+//	}
 	
 //	@GetMapping("/user")
 //	@PreAuthorize("permitAll")

@@ -1,5 +1,17 @@
 <template>
   <v-container>
+    <!-- <v-card-title>
+      게시판
+      <v-spacer></v-spacer>
+      <v-text-field
+        v-model="searchType"
+        label="Search"
+        single-line
+        hide-details
+      ></v-text-field>
+    </v-card-title> -->
+
+
     <v-simple-table style="width: 200%">
       <template v-slot:default>
         <thead>
@@ -48,9 +60,41 @@
         :length="4"
         prev-icon="mdi-menu-left"
         next-icon="mdi-menu-right"
-        @input="boardList(page)"
+        @input="boardList({page})"
         ></v-pagination>
       </div>
+    </v-row>
+
+
+
+
+    <v-row>
+    <div>
+      <select v-model="searchType">
+        <option disabled value="">- 선택 -</option>
+        <option value="bTitle">제목</option>
+        <option value="username">작성자</option>
+      </select>
+      <span>선택함: {{ searchType }}</span>
+       <v-text-field
+          v-model="keyword"
+          label="Search"
+          single-line
+          hide-details
+        ></v-text-field>
+        {{ keyword }}
+	</div>
+  <div class="text-right pt-3">
+        <v-btn 
+          rounded
+          block 
+          color="blue darken-3" 
+          dark 
+          @click="boardList({searchType,keyword,page})"
+        >
+          검색
+        </v-btn>
+  </div>
     </v-row>
   </v-container>
 </template>
@@ -60,12 +104,16 @@ import { mapState, mapActions } from "vuex"
 export default {
   data () {
       return {
-        page: 1
+        page: 1,
+        searchType:null,
+        keyword:null,
+        // selected:null,
+        // search:null,
       //  list: this.$store.state.boardlist
       }
     },
   created() {
-    this.$store.dispatch('boardList', this.page)
+    this.$store.dispatch('boardList', {page: this.page})
   },
   computed: {
     ...mapState(['boardlist'])

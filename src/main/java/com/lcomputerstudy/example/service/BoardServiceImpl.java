@@ -46,8 +46,8 @@ public class BoardServiceImpl implements BoardService {
 		
 	};
 	
-	public int getBoards() {
-		return boardMapper.getBoards();
+	public int getBoards(Search search) {
+		return boardMapper.getBoards(search);
 	};
 
 

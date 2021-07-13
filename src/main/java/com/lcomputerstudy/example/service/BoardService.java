@@ -18,6 +18,6 @@ public interface BoardService {
 
 	public void modifyBoard(Board board);
 	
-	public int getBoards();
+	public int getBoards(Search search);
 
 }

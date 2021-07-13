@@ -20,7 +20,7 @@ public interface BoardMapper {
 	
 	public void modifyBoard(Board board);
 	
-	public int getBoards();
+	public int getBoards(Search search);
 
 	
 	

@@ -10,7 +10,19 @@
 		FROM 		boardlist ta
 		LEFT join 	userlist tc 
 		ON 			ta.u_id = tc.u_id,
-					(SELECT @ROWNUM := (SELECT	COUNT(*)-#{pageNum}+1 FROM boardlist ta)) tb
+					(SELECT @ROWNUM := (SELECT	COUNT(*)-#{pageNum}+1 FROM boardlist ta)) tb				
+		<where>
+			<if test="search.searchType != null">
+				<choose>
+		   			<when test="search.searchType == 'bTitle'">
+		   				b_title like CONCAT('%', #{search.keyword}, '%')
+		   			</when>
+		   			<when test="search.searchType == 'username'">
+		   				tc.u_id like CONCAT('%', #{search.keyword}, '%')
+		   			</when>
+		   		</choose>	
+			</if>
+		</where>
 <!-- 		ORDER BY 	b_group desc, b_order asc -->
 		LIMIT		#{pageNum}, 5
    </select>
@@ -87,6 +99,18 @@
     <select id="getBoards" resultType="int">
 	 	Select 	COUNT(*) count 
 	 	FROM boardlist
+	 	<where>
+			<if test="searchType != null">
+				<choose>
+		   			<when test="searchType == 'bTitle'">
+		   				b_title like CONCAT('%', #{keyword}, '%')
+		   			</when>
+		   			<when test="searchType == 'username'">
+		   				u_id like CONCAT('%', #{keyword}, '%')
+		   			</when>
+		   		</choose>	
+			</if>
+		</where>
     </select>
 	
 </mapper>
