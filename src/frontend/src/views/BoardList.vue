@@ -75,7 +75,12 @@
         <option value="bTitle">제목</option>
         <option value="username">작성자</option>
       </select>
+
       <span>선택함: {{ searchType }}</span>
+      <!-- <v-select
+          :items="items"
+          label="Standard"
+        ></v-select> -->
        <v-text-field
           v-model="keyword"
           label="Search"

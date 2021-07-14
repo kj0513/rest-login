@@ -19,10 +19,25 @@
           </td>
         </tr>
       </table>
+
+
+      <table>
+          <td colspan="2" style="border:none;text-align:right;border-top:3px double #ededed">
+            {{commentlist.c_content}}
+            <v-btn @click="CommentModify({cId:cId})">수정</v-btn>
+            <v-btn @click="CommentDelete({cId:cId})">삭제</v-btn>
+          </td>
+      </table>
+
+
+
+
         <v-form style="width:500px;margin:0 auto;">
           <v-text-field
+          name="comment_content"
+          v-model="comment_content"
           ></v-text-field>
-          <v-btn @click="CommentWrite({bId:bId})">댓글등록</v-btn>
+          <v-btn @click="CommentWrite({username: Userinfo.User_Id, bId: bId, c_content: comment_content})">댓글등록</v-btn>
         </v-form>
   </v-flex>
 </template>
@@ -32,10 +47,11 @@ export default {
     data() {
       return {
         bId : this.$route.params.bId,
+        comment_content:null
       }
     },
     computed: {
-       ...mapState(["board_detail"])
+       ...mapState(["board_detail","Userinfo",'commentlist'])
     },
     methods: {
       ...mapActions(["BoardDelete","BoardModify","boardWrite","CommentWrite"])

@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.lcomputerstudy.example.domain.Board;
+import com.lcomputerstudy.example.domain.Comment;
 import com.lcomputerstudy.example.domain.Pagination;
 import com.lcomputerstudy.example.domain.Search;
 
@@ -21,6 +22,8 @@ public interface BoardMapper {
 	public void modifyBoard(Board board);
 	
 	public int getBoards(Search search);
+	
+	public void writeComment(Comment comment);
 
 	
 	

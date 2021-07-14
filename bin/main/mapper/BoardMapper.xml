@@ -112,5 +112,18 @@
 			</if>
 		</where>
     </select>
+    
+    <insert id="writeComment">
+	      Insert into
+	      commentlist(
+	     		 c_content
+	     		 ,b_id
+	     		 ,u_id)
+	      values(
+	      		#{c_content}
+	            ,#{bId}
+	            ,#{username}
+	      		)
+   </insert>
 	
 </mapper>

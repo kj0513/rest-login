@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.lcomputerstudy.example.domain.Board;
+import com.lcomputerstudy.example.domain.Comment;
 import com.lcomputerstudy.example.domain.Pagination;
 import com.lcomputerstudy.example.domain.Search;
 import com.lcomputerstudy.example.mapper.BoardMapper;
@@ -49,6 +50,13 @@ public class BoardServiceImpl implements BoardService {
 	public int getBoards(Search search) {
 		return boardMapper.getBoards(search);
 	};
-
+	
+	@Override
+	public void writeComment(Comment comment) {
+		boardMapper.writeComment(comment);
+	}
+	
+	
+	
 
 }

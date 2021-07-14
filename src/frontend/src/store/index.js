@@ -10,6 +10,7 @@ export default new Vuex.Store({
     boardlist:[],
     board_detail:[],
     UserList:[],
+    commentlist:[],
     board_headers: [
       {
 
@@ -72,6 +73,10 @@ export default new Vuex.Store({
    SET_BOARDMODIFY(state,data) {
     state.board_detail=data
     Route.push("/boardModify/"+data.bId)
+  },
+  SET_COMMENTLIST(state,data) {
+    state.commentlist = data
+    Route.push("/boardDetail/"+data.bId)
   },
    READ_USER_LIST(state,data) {
     state.UserList = data
@@ -233,6 +238,19 @@ export default new Vuex.Store({
           .then(Response => {
               console.log(Response.data)
               Route.push("/boardlist")
+          })
+          .catch(Error => {
+              console.log('error')
+              reject(Error)
+          })
+  })
+  },
+  CommentWrite({commit},payload) {
+    return new Promise((resolve, reject) => {
+      axios.post('http://localhost:9000/api/test/commentWrite', payload)
+          .then(Response => {
+              console.log(Response.data)
+              commit('SET_COMMENTLIST', Response.data)
           })
           .catch(Error => {
               console.log('error')

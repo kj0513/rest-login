@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lcomputerstudy.example.domain.Board;
+import com.lcomputerstudy.example.domain.Comment;
 import com.lcomputerstudy.example.domain.Pagination;
 import com.lcomputerstudy.example.domain.Search;
 import com.lcomputerstudy.example.domain.User;
@@ -176,5 +177,14 @@ public class TestController {
 		return ResponseEntity.ok(board);
 	}
 	
+	@PostMapping("/commentWrite")
+	@PreAuthorize("permitAll")
+	public ResponseEntity<?>  commentWrite(@RequestBody Comment comment) {
+		
+		boardService.writeComment(comment);
+		
+		return ResponseEntity.ok(comment);
+
+	}
 
 }
