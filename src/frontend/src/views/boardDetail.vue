@@ -23,7 +23,7 @@
 
       <table>
           <td colspan="2" style="border:none;text-align:right;border-top:3px double #ededed">
-            {{commentlist.c_content}}
+            {{commentlist.c_content}} {{commentlist.username}} 
             <v-btn @click="CommentModify({cId:cId})">수정</v-btn>
             <v-btn @click="CommentDelete({cId:cId})">삭제</v-btn>
           </td>

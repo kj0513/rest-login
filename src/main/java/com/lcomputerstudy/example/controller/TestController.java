@@ -127,7 +127,10 @@ public class TestController {
 		logger.info("///"+bId);
 		
 		Board board = boardService.selectBoardDetail(bId);
+		List<Comment> list = boardService.getCommentList(bId);
+		
 		return ResponseEntity.ok(board);
+		
 	}
 	
 	

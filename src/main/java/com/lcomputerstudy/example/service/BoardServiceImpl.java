@@ -55,6 +55,12 @@ public class BoardServiceImpl implements BoardService {
 	public void writeComment(Comment comment) {
 		boardMapper.writeComment(comment);
 	}
+
+
+	@Override
+	public List<Comment> getCommentList(int bId) {
+		return boardMapper.getCommentList(bId);
+	}
 	
 	
 	

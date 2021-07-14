@@ -12,7 +12,7 @@ public class Board {
 	private int bOrder;
 	private int bDepth;
 	
-	
+	private Comment comment;
 	private User user;
 	
 	public int getbId() {

@@ -125,5 +125,22 @@
 	            ,#{username}
 	      		)
    </insert>
+   
+   <resultMap type="Comment" id="CommentMap">
+	   	<result column = "c_id" property="c_id"/>
+	   	<result column = "c_content" property="c_content"/>
+	   	<result column = "u_id" property="username"/>
+	   	<association property="user" resultMap="UserMap"/>
+   </resultMap> 
+   	  
+   <select id="getCommentList" resultMap="CommentMap">
+	  SELECT		ta.*,
+				    tc.u_id,
+				    tc.u_name
+      FROM 			commentlist ta
+      LEFT join 	userlist tc 
+      ON 			ta.u_id = tc.u_id
+      WHERE 		b_id = #{bId}
+    </select>
 	
 </mapper>
