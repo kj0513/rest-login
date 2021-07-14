@@ -60,11 +60,11 @@
         :length="4"
         prev-icon="mdi-menu-left"
         next-icon="mdi-menu-right"
-        @input="boardList({page})"
+        @input="boardList({searchType,keyword,page})"
         ></v-pagination>
       </div>
     </v-row>
-
+<!-- @input="boardList({page})" -->
 
 
 
