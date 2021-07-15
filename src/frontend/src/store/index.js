@@ -10,7 +10,6 @@ export default new Vuex.Store({
     boardlist:[],
     board_detail:[],
     UserList:[],
-    commentlist:[],
     board_headers: [
       {
 
@@ -75,7 +74,7 @@ export default new Vuex.Store({
     Route.push("/boardModify/"+data.bId)
   },
   SET_COMMENTLIST(state,data) {
-    state.commentlist = data
+    state.board_detail=data
     Route.push("/boardDetail/"+data.bId)
   },
    READ_USER_LIST(state,data) {

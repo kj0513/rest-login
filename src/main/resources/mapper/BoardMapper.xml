@@ -27,13 +27,10 @@
 		LIMIT		#{pageNum}, 5
    </select>
    
-      <resultMap type="User" id="UserMap">
-   		<result column = "u_id" property="username"/>
-   		<result column = "u_name" property="name"/>
-   	  </resultMap>
+
    	  
       <resultMap type="Board" id="BoardMap">
-   		<result column = "b_id" property="bId"/>
+   		<id column = "b_id" property="bId"/>
    		<result column = "b_title" property="bTitle"/>
    		<result column = "b_content" property="bContent"/>
    		<result column = "b_datetime" property="bDateTime"/>
@@ -42,9 +39,26 @@
    		<result column = "b_order" property="bOrder"/>
    		<result column = "b_depth" property="bDepth"/>
    		<result column = "u_id" property="username"/>
-   		<association property="user" resultMap="UserMap"/>
+   		<association property="user" resultMap="UserMap"></association>
+   		<collection property="comment" resultMap="CommentMap" ></collection>
+<!--    		<collection property="comment" ofType/>
+   		
+   		</collection> -->
    	  </resultMap> 
-   
+   	  
+      <resultMap type="User" id="UserMap">
+   		<result column = "u_id" property="username"/>
+   		<result column = "u_name" property="name"/>
+   	  </resultMap>
+   	  
+   	  <resultMap type="Comment" id="CommentMap">
+   		<result column = "b_id" property="bId"/>
+   		<result column = "u_id" property="username"/>
+   		<result column = "c_id" property="c_id"/>
+  		<result column = "c_content" property="c_content"/>
+   	  </resultMap>
+   	  
+   	  
    
 <!-- 	<select id="selectBoardList" resultType="Board">
 		SELECT			b_id as bId,
@@ -55,15 +69,29 @@
 		FROM			boardlist
 	</select> -->
 	
-	<select id="selectBoardDetail" resultType="Board" parameterType="int">
-		SELECT					b_id as bId,
-								b_title as bTitle,
-								b_content as bContent,
-								u_id as username,
-								b_datetime as bDateTime 
-		FROM				boardlist
+<!-- 	<select id="selectBoardDetail" resultType="Board" parameterType="int">
+		SELECT			b_id as bId,
+						b_title as bTitle,
+						b_content as bContent,
+						u_id as username,
+						b_datetime as bDateTime 
+		FROM			boardlist
 		WHERE			b_id = #{bId}
+	</select> -->
+	<select id="selectBoardDetail" resultMap="BoardMap">
+		SELECT			ta.*,
+						tc.c_id,
+						tc.u_id,
+						tc.c_content
+		FROM			boardlist ta
+		LEFT join 		commentlist tc
+		ON				ta.b_id = tc.b_id
+		Where			ta.b_id = #{bId}
 	</select>
+	
+	
+	
+	
 	<select id="deleteBoard" resultType="Board" parameterType="int">
 		DELETE			
 		FROM				boardlist
@@ -126,7 +154,7 @@
 	      		)
    </insert>
    
-   <resultMap type="Comment" id="CommentMap">
+  <!--  <resultMap type="Comment" id="CommentMap">
 	   	<result column = "c_id" property="c_id"/>
 	   	<result column = "c_content" property="c_content"/>
 	   	<result column = "u_id" property="username"/>
@@ -141,6 +169,6 @@
       LEFT join 	userlist tc 
       ON 			ta.u_id = tc.u_id
       WHERE 		b_id = #{bId}
-    </select>
+    </select> -->
 	
 </mapper>

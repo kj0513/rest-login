@@ -1,5 +1,7 @@
 package com.lcomputerstudy.example.domain;
 
+import java.util.List;
+
 public class Board {
 	private int bId;
 	private String bTitle;
@@ -12,7 +14,9 @@ public class Board {
 	private int bOrder;
 	private int bDepth;
 	
-	private Comment comment;
+	
+	
+	private List<Comment> comment;
 	private User user;
 	
 	public int getbId() {
@@ -79,12 +83,25 @@ public class Board {
 		this.bDepth = bDepth;
 	}
 	
+	public List<Comment> getComment() {
+		return comment;
+	}
+	public void setComment(List<Comment> comment) {
+		this.comment = comment;
+	}
+	
+	/*
+	 * public List<Comment> getComment() { return comment; } public void
+	 * setComment(Comment comment) { this.comment = comment; }
+	 */
+	
 	
 	@Override
 	public String toString() {
 		return "Board [bId=" + bId + ", bTitle=" + bTitle + ", bContent=" + bContent + ", usernamer=" + username
 				+ ", bDateTime=" + bDateTime + "]";
 	}
+
 	
 	
 }

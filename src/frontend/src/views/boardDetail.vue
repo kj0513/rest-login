@@ -10,6 +10,7 @@
         </tr>
         <tr>
           <td colspan="2" style="border:none;">{{board_detail.bContent}}</td>
+          <td colspan="2" style="border:none;">{{board_detail.c_content}}</td>
         </tr>
         <tr>
           <td colspan="2" style="border:none;text-align:right;border-top:3px double #ededed">
@@ -21,9 +22,36 @@
       </table>
 
 
+<v-simple-table>
+  <template v-slot:default>
+      <thead>
+        <tr>
+          <th class="text-left">
+            댓글작성자
+          </th>
+          <th class="text-left">
+            댓글내용
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          v-for="item in board_detail.list"
+          :key="item.name"
+        >
+          <td>{{ item.username }}</td>
+          <td>{{ item.c_content }}</td>
+        </tr>
+      </tbody>
+    </template>
+  </v-simple-table>
+
+
+
+
+
       <table>
           <td colspan="2" style="border:none;text-align:right;border-top:3px double #ededed">
-            {{commentlist.c_content}} {{commentlist.username}} 
             <v-btn @click="CommentModify({cId:cId})">수정</v-btn>
             <v-btn @click="CommentDelete({cId:cId})">삭제</v-btn>
           </td>
@@ -51,7 +79,7 @@ export default {
       }
     },
     computed: {
-       ...mapState(["board_detail","Userinfo",'commentlist'])
+       ...mapState(["board_detail","Userinfo"])
     },
     methods: {
       ...mapActions(["BoardDelete","BoardModify","boardWrite","CommentWrite"])
