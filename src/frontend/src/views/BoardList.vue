@@ -57,7 +57,7 @@
       <div class="overflow-auto pt-4">
        <v-pagination
         v-model="page"
-        :length="4"
+        :length="boardlist.pagination.lastPage"
         prev-icon="mdi-menu-left"
         next-icon="mdi-menu-right"
         @input="boardList({searchType,keyword,page})"
