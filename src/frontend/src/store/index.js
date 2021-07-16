@@ -73,9 +73,9 @@ export default new Vuex.Store({
     state.board_detail=data
     Route.push("/boardModify/"+data.bId)
   },
-  SET_COMMENTLIST(state,data) {
-    state.board_detail=data
-    Route.push("/boardDetail/"+data.bId)
+  SET_COMMENT(state,data) {
+    state.board_detail.comment=data
+    // Route.push("/boardDetail/"+data.bId)
   },
    READ_USER_LIST(state,data) {
     state.UserList = data
@@ -249,7 +249,7 @@ export default new Vuex.Store({
       axios.post('http://localhost:9000/api/test/commentWrite', payload)
           .then(Response => {
               console.log(Response.data)
-              commit('SET_COMMENTLIST', Response.data)
+              commit('SET_COMMENT', Response.data)
           })
           .catch(Error => {
               console.log('error')

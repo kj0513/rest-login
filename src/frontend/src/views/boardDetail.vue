@@ -10,7 +10,6 @@
         </tr>
         <tr>
           <td colspan="2" style="border:none;">{{board_detail.bContent}}</td>
-          <td colspan="2" style="border:none;">{{board_detail.c_content}}</td>
         </tr>
         <tr>
           <td colspan="2" style="border:none;text-align:right;border-top:3px double #ededed">
@@ -46,18 +45,12 @@
     </template>
   </v-simple-table>
 
-
-
-
-
       <table>
           <td colspan="2" style="border:none;text-align:right;border-top:3px double #ededed">
             <v-btn @click="CommentModify({cId:cId})">수정</v-btn>
             <v-btn @click="CommentDelete({cId:cId})">삭제</v-btn>
           </td>
       </table>
-
-
 
 
         <v-form style="width:500px;margin:0 auto;">
@@ -67,6 +60,9 @@
           ></v-text-field>
           <v-btn @click="CommentWrite({username: Userinfo.User_Id, bId: bId, c_content: comment_content})">댓글등록</v-btn>
         </v-form>
+
+
+        
   </v-flex>
 </template>
 <script>

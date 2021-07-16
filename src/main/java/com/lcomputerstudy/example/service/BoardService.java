@@ -23,6 +23,6 @@ public interface BoardService {
 	
 	public void writeComment(Comment comment);
 
-	public List<Comment> getCommentList(int bId);
+	public List<Comment> selectCommentList(Comment comment);
 
 }

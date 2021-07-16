@@ -154,6 +154,12 @@
 	      		)
    </insert>
    
+   <select id="selectCommentList" resultMap="CommentMap">
+		SELECT			ta.*
+		FROM			commentlist ta
+		Where			ta.b_id = #{bId}
+	</select>
+   
   <!--  <resultMap type="Comment" id="CommentMap">
 	   	<result column = "c_id" property="c_id"/>
 	   	<result column = "c_content" property="c_content"/>

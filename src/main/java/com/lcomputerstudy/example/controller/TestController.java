@@ -180,11 +180,12 @@ public class TestController {
 	
 	@PostMapping("/commentWrite")
 	@PreAuthorize("permitAll")
-	public ResponseEntity<?>  commentWrite(@RequestBody Comment comment) {
+	public ResponseEntity<?>  commentWrite(@RequestBody Comment comment) {//bid만 어떻게 받아오는지//bid만 어떻게 받아오는지//bid만 어떻게 받아오는지//bid만 어떻게 받아오는지
 		
 		boardService.writeComment(comment);
+		List<Comment> commentlist = boardService.selectCommentList(comment);
 		
-		return ResponseEntity.ok(comment);
+		return ResponseEntity.ok(commentlist);
 
 	}
 
