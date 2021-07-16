@@ -36,8 +36,8 @@
       </thead>
       <tbody>
         <tr
-          v-for="item in board_detail.list"
-          :key="item.name"
+          v-for="item in board_detail.comment"
+          :key="item.c_id"
         >
           <td>{{ item.username }}</td>
           <td>{{ item.c_content }}</td>
