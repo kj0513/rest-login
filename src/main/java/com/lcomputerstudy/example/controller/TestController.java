@@ -188,5 +188,25 @@ public class TestController {
 		return ResponseEntity.ok(commentlist);
 
 	}
+	
+//	@DeleteMapping("/commentDelete/{cId}")
+//	@PreAuthorize("permitAll")
+//	public ResponseEntity<?>  commentDelete(@RequestBody Comment comment) {
+//		
+//		logger.info("delete"+comment);
+//		boardService.deleteComment(comment);
+//		List<Comment> commentlist = boardService.selectCommentList(comment);
+//		return ResponseEntity.ok(commentlist);
+//	}
+	
+	@DeleteMapping("/commentDelete/{cId}")
+	@PreAuthorize("permitAll")
+	public ResponseEntity<?>  commentDelete(@PathVariable(value = "cId") int cId) {
+		
+		logger.info("delete"+cId);
+		boardService.deleteComment(cId);
+		List<Comment> commentlist = boardService.selectCommentList(comment);
+		return ResponseEntity.ok(commentlist);
+	}
 
 }

@@ -160,6 +160,11 @@
 		Where			ta.b_id = #{bId}
 	</select>
    
+   	<select id="deleteComment">
+		DELETE			
+		FROM				commentlist
+		WHERE			c_id = #{c_id}
+	</select>
   <!--  <resultMap type="Comment" id="CommentMap">
 	   	<result column = "c_id" property="c_id"/>
 	   	<result column = "c_content" property="c_content"/>
@@ -175,6 +180,10 @@
       LEFT join 	userlist tc 
       ON 			ta.u_id = tc.u_id
       WHERE 		b_id = #{bId}
+      
+      
     </select> -->
+	
+	
 	
 </mapper>

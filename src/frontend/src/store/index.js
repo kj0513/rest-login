@@ -257,6 +257,25 @@ export default new Vuex.Store({
           })
   })
   },
+  CommentDelete({commit},payload) {
+    console.log(payload)
+    return new Promise((resolve, reject) => {
+      axios.delete('http://localhost:9000/api/test/commentDelete',{
+        data: {
+        bId: payload.bId,
+        cId: payload.cId
+        }
+      })
+          .then(Response => {
+              console.log(Response.data)
+              commit('SET_COMMENT', Response.data)
+          })
+          .catch(Error => {
+              console.log('error')
+              reject(Error)
+          })
+  })
+  },
   admin({commit}) {
     let token = localStorage.getItem("token")
     console.log(token)

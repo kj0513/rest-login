@@ -61,6 +61,13 @@ public class BoardServiceImpl implements BoardService {
 	public List<Comment> selectCommentList(Comment comment) {
 		return boardMapper.selectCommentList(comment);
 	}
+
+
+	@Override
+	public void deleteComment(int cId) {
+		boardMapper.deleteComment(cId);
+		
+	}
 	
 	
 	

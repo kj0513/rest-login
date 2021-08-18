@@ -27,6 +27,8 @@ public interface BoardMapper {
 
 	public List<Comment> selectCommentList(Comment comment);
 
+	public void deleteComment(int cId);
+
 	
 	
 }

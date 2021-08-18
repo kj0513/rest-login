@@ -25,4 +25,6 @@ public interface BoardService {
 
 	public List<Comment> selectCommentList(Comment comment);
 
+	public void deleteComment(int cId);
+
 }

@@ -10,50 +10,75 @@
         hide-details
       ></v-text-field>
     </v-card-title> -->
-
-
-    <v-simple-table style="width: 200%">
-      <template v-slot:default>
-        <thead>
-          <tr>
-            <th class="text-left">
-              No
-            </th>
-            <th class="text-left">
-              제목
-            </th>
-            <th class="text-left">
-              작성자
-            </th>
-            <th class="text-left">
-              날짜
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr
-            v-for="item in boardlist.list"
-            :key="item.bId"
-            @click="boardDetail(item.bId)"
-          >
-            <td>{{ item.bId }}</td>
-            <td>{{ item.bTitle }}</td>
-            <td>{{ item.username }}</td>
-            <td>{{ item.bDateTime }}</td>
-          </tr>
-        </tbody>
-      </template>
-    </v-simple-table>
     <v-row>
+      <div>
+        <select v-model="searchType">
+          <option disabled value="">- 선택 -</option>
+          <option value="bTitle">제목</option>
+          <option value="username">작성자</option>
+        </select>
+
+        <span>선택함: {{ searchType }}</span>
+        <!-- <v-select
+            :items="items"
+            label="Standard"
+          ></v-select> -->
+        <v-text-field
+            v-model="keyword"
+            label="Search"
+            single-line
+            hide-details
+          ></v-text-field>
+          {{ keyword }}
+      </div>
       <div class="text-right pt-3">
-          <v-btn
-            color="primary"
-            router :to="{name:'boardwrite'}"
-          >글쓰기
-          </v-btn>
+        <v-btn 
+          rounded
+          block 
+          color="blue darken-3" 
+          dark 
+          @click="boardList({searchType,keyword,page})"
+        >
+          검색
+        </v-btn>
       </div>
     </v-row>
     <v-row>
+      <v-simple-table style="width: 200%">
+        <template v-slot:default>
+          <thead>
+            <tr>
+              <th class="text-left">
+                No
+              </th>
+              <th class="text-left">
+                제목
+              </th>
+              <th class="text-left">
+                작성자
+              </th>
+              <th class="text-left">
+                날짜
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              v-for="item in boardlist.list"
+              :key="item.bId"
+              @click="boardDetail(item.bId)"
+            >
+              <td>{{ item.bId }}</td>
+              <td>{{ item.bTitle }}</td>
+              <td>{{ item.username }}</td>
+              <td>{{ item.bDateTime }}</td>
+            </tr>
+          </tbody>
+        </template>
+      </v-simple-table>
+    </v-row>
+
+    <v-row justify="center">
       <div class="overflow-auto pt-4">
        <v-pagination
         v-model="page"
@@ -64,43 +89,24 @@
         ></v-pagination>
       </div>
     </v-row>
+
+
+
+    <v-row justify="end" >
+      <div class="text-right pt-3">
+          <v-btn
+            color="primary"
+            router :to="{name:'boardwrite'}"
+          >글쓰기
+          </v-btn>
+      </div>
+    </v-row>
+    
 <!-- @input="boardList({page})" -->
 
 
 
-    <v-row>
-    <div>
-      <select v-model="searchType">
-        <option disabled value="">- 선택 -</option>
-        <option value="bTitle">제목</option>
-        <option value="username">작성자</option>
-      </select>
-
-      <span>선택함: {{ searchType }}</span>
-      <!-- <v-select
-          :items="items"
-          label="Standard"
-        ></v-select> -->
-       <v-text-field
-          v-model="keyword"
-          label="Search"
-          single-line
-          hide-details
-        ></v-text-field>
-        {{ keyword }}
-	</div>
-  <div class="text-right pt-3">
-        <v-btn 
-          rounded
-          block 
-          color="blue darken-3" 
-          dark 
-          @click="boardList({searchType,keyword,page})"
-        >
-          검색
-        </v-btn>
-  </div>
-    </v-row>
+    
   </v-container>
 </template>
 <!-- @input="boardList({page:page, type:type, keyword:keyword})" -->

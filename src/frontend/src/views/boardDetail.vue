@@ -40,17 +40,20 @@
         >
           <td>{{ item.username }}</td>
           <td>{{ item.c_content }}</td>
+          <!-- <v-btn @click="CommentModify({cId:cId})">수정</v-btn> -->
+          <!-- <v-btn @click="CommentDelete({cId:item.c_id, bId: item.bId})">삭제</v-btn> -->
+          <v-btn @click="CommentDelete({cId: item.c_id})">삭제</v-btn>
         </tr>
       </tbody>
     </template>
   </v-simple-table>
 
-      <table>
+      <!-- <table>
           <td colspan="2" style="border:none;text-align:right;border-top:3px double #ededed">
             <v-btn @click="CommentModify({cId:cId})">수정</v-btn>
             <v-btn @click="CommentDelete({cId:cId})">삭제</v-btn>
           </td>
-      </table>
+      </table> -->
 
 
         <v-form style="width:500px;margin:0 auto;">
@@ -78,7 +81,7 @@ export default {
        ...mapState(["board_detail","Userinfo"])
     },
     methods: {
-      ...mapActions(["BoardDelete","BoardModify","boardWrite","CommentWrite"])
+      ...mapActions(["BoardDelete","BoardModify","boardWrite","CommentWrite","CommentDelete"])
     }
 }
 </script>
